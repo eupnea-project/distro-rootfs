@@ -90,6 +90,8 @@ jobs:
             fedora-rootfs-37.tar.xz
 
   create-release:
+    runs-on: ubuntu-22.04
+    steps:
       - name: Downloading rootfs artifacts
         uses: actions/download-artifact@v3
         with:
