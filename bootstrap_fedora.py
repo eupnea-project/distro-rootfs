@@ -22,4 +22,4 @@ if __name__ == "__main__":
     bash(f"dnf -y --releasever={fedora_version} --installroot=/tmp/{fedora_version} groupinstall core")
 
     print_status("Compressing rootfs")
-    bash(f"tar -cv -I 'xz -9 -T0' -f /tmp/{fedora_version} ./fedora-rootfs-{fedora_version}.tar.xz")
+    bash(f"tar -cv -I 'xz -9 -T0' -f ./fedora-rootfs-{fedora_version}.tar.xz /tmp/{fedora_version}")
