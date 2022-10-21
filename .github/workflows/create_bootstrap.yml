@@ -89,6 +89,34 @@ jobs:
           path: |
             fedora-rootfs-37.tar.xz
 
+  build-rawhide:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checking out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Installing dependencies
+        run: sudo apt-get install -y dnf curl
+
+      - name: Adding yum repos for dnf
+        run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
+
+      - name: Adding gpg keys repos for dnf
+        run: sudo cp -r configs/rpm-gpg /etc/pki/
+
+      - name: Building depthcharge image
+        run: sudo python3 bootstrap_fedora.py --version=rawhide
+
+      - name: Uploading rootfs as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: fedora-37
+          retention-days: 1
+          path: |
+            fedora-rootfs-rawhide.tar.xz
+
   create-release:
     runs-on: ubuntu-22.04
     needs: [ build-35, build-36, build-37 ]
