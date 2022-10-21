@@ -1,7 +1,7 @@
 name: Building + releasing fedora rootfs
 on:
   schedule:
-    - cron: "0 0 * * *" # run at the start of every day
+    - cron: "10 0 * * *" # run at the start of every day after functions.py update
   workflow_dispatch:
 
 jobs:
