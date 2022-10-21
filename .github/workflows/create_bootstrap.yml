@@ -1,0 +1,112 @@
+name: Building + releasing fedora rootfs
+on:
+  schedule:
+    - cron: "0 0 * * *" # run at the start of every day
+  workflow_dispatch:
+
+jobs:
+  build-35:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checking out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Installing dependencies
+        run: sudo apt-get install -y dnf curl
+
+      - name: Adding yum repos for dnf
+        run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
+
+      - name: Adding gpg keys repos for dnf
+        run: sudo cp -r configs/rpm-gpg /etc/pki/
+
+      - name: Building depthcharge image
+        run: sudo python3 bootstrap-fedora --version=35
+
+      - name: Uploading rootfs as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: fedora-35
+          retention-days: 1
+          path: |
+            fedora-rootfs-35.tar.xz
+
+  build-36:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checking out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Installing dependencies
+        run: sudo apt-get install -y dnf curl
+
+      - name: Adding yum repos for dnf
+        run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
+
+      - name: Adding gpg keys repos for dnf
+        run: sudo cp -r configs/rpm-gpg /etc/pki/
+
+      - name: Building depthcharge image
+        run: sudo python3 bootstrap-fedora --version=36
+
+      - name: Uploading rootfs as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: fedora-36
+          retention-days: 1
+          path: |
+            fedora-rootfs-36.tar.xz
+
+  build-37:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checking out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Installing dependencies
+        run: sudo apt-get install -y dnf curl
+
+      - name: Adding yum repos for dnf
+        run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
+
+      - name: Adding gpg keys repos for dnf
+        run: sudo cp -r configs/rpm-gpg /etc/pki/
+
+      - name: Building depthcharge image
+        run: sudo python3 bootstrap-fedora --version=37
+
+      - name: Uploading rootfs as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: fedora-37
+          retention-days: 1
+          path: |
+            fedora-rootfs-37.tar.xz
+
+  create-release:
+      - name: Downloading rootfs artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: /tmp/artifacts/
+
+      - name: Generate release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d_%H-%M")"
+
+      - name: Creating new release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          name: Automated Fedora rootfs build - ${{ steps.tag.outputs.release_tag }}
+          body: |
+            These are completely **unmodified** fedora rootfs images for the depthboot builder script.  
+            Please download official images at https://getfedora.org/
+          files: |
+            /tmp/artifacts/fedora-*/fedora-rootfs-*
