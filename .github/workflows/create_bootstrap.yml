@@ -31,7 +31,7 @@ jobs:
           name: fedora-35
           retention-days: 1
           path: |
-            fedora-rootfs-35.tar.xz
+            /tmp/fedora-rootfs-35.tar.xz
 
   build-36:
     runs-on: ubuntu-22.04
@@ -59,7 +59,7 @@ jobs:
           name: fedora-36
           retention-days: 1
           path: |
-            fedora-rootfs-36.tar.xz
+            /tmp/fedora-rootfs-36.tar.xz
 
   build-37:
     runs-on: ubuntu-22.04
@@ -87,7 +87,7 @@ jobs:
           name: fedora-37
           retention-days: 1
           path: |
-            fedora-rootfs-37.tar.xz
+            /tmp/fedora-rootfs-37.tar.xz
 
   build-rawhide:
     runs-on: ubuntu-22.04
@@ -115,7 +115,7 @@ jobs:
           name: fedora-37
           retention-days: 1
           path: |
-            fedora-rootfs-rawhide.tar.xz
+            /tmp/fedora-rootfs-rawhide.tar.xz
 
   create-release:
     runs-on: ubuntu-22.04

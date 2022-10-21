@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 
 from functions import *
 
@@ -22,4 +23,5 @@ if __name__ == "__main__":
     bash(f"dnf -y --releasever={fedora_version} --installroot=/tmp/{fedora_version} groupinstall core")
 
     print_status("Compressing rootfs")
-    bash(f"tar -cv -I 'xz -9 -T0' -f ./fedora-rootfs-{fedora_version}.tar.xz -C /tmp/{fedora_version}")
+    os.chdir(f"/tmp/{fedora_version}")
+    bash(f"tar -cv -I 'xz -9 -T0' -f ../fedora-rootfs-{fedora_version}.tar.xz ./")
