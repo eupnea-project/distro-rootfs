@@ -23,7 +23,7 @@ jobs:
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
       - name: Building depthcharge image
-        run: sudo python3 bootstrap-fedora --version=35
+        run: sudo python3 bootstrap_fedora.py --version=35
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
@@ -51,7 +51,7 @@ jobs:
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
       - name: Building depthcharge image
-        run: sudo python3 bootstrap-fedora --version=36
+        run: sudo python3 bootstrap_fedora.py --version=36
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
@@ -79,7 +79,7 @@ jobs:
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
       - name: Building depthcharge image
-        run: sudo python3 bootstrap-fedora --version=37
+        run: sudo python3 bootstrap_fedora.py --version=37
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
