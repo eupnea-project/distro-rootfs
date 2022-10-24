@@ -1,4 +1,4 @@
-name: Building + releasing fedora rootfs
+name: Bootstrapping + releasing fedora rootfs
 on:
   push:
     branches: [ "main" ]
@@ -24,7 +24,7 @@ jobs:
       - name: Adding gpg keys repos for dnf
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
-      - name: Building depthcharge image
+      - name: Bootstrapping fedora 35
         run: sudo python3 bootstrap_fedora.py --version=35
 
       - name: Uploading rootfs as artifact
@@ -52,7 +52,7 @@ jobs:
       - name: Adding gpg keys repos for dnf
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
-      - name: Building depthcharge image
+      - name: Bootstrapping fedora 36
         run: sudo python3 bootstrap_fedora.py --version=36
 
       - name: Uploading rootfs as artifact
@@ -80,7 +80,7 @@ jobs:
       - name: Adding gpg keys repos for dnf
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
-      - name: Building depthcharge image
+      - name: Bootstrapping fedora 37
         run: sudo python3 bootstrap_fedora.py --version=37
 
       - name: Uploading rootfs as artifact
@@ -100,7 +100,7 @@ jobs:
         with:
           path: /tmp/artifacts/
 
-      - name: Generate release tag
+      - name: Generating release tag
         id: tag
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d_%H-%M")"
