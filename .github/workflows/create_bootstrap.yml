@@ -65,7 +65,7 @@ jobs:
 
   create-release:
     runs-on: ubuntu-22.04
-    needs: [ build-35, build-36, build-37, build-38 ]
+    needs: [ build-37, build-38 ]
     steps:
       - name: Downloading rootfs artifacts
         uses: actions/download-artifact@v3
