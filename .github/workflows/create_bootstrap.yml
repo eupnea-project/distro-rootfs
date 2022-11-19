@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Installing dependencies
-        run: sudo apt-get install -y dnf curl
+        run: sudo apt-get update && sudo apt-get install -y dnf curl
 
       - name: Adding yum repos for dnf
         run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
@@ -44,7 +44,7 @@ jobs:
           fetch-depth: 1
 
       - name: Installing dependencies
-        run: sudo apt-get install -y dnf curl
+        run: sudo apt-get update && sudo apt-get install -y dnf curl
 
       - name: Adding yum repos for dnf
         run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
