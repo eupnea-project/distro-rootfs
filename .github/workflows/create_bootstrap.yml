@@ -25,7 +25,7 @@ jobs:
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
       - name: Bootstrapping fedora 37
-        run: sudo python3 bootstrap_fedora.py --version=37
+        run: sudo bash bootstrap_fedora.sh --version=37
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
@@ -53,7 +53,7 @@ jobs:
         run: sudo cp -r configs/rpm-gpg /etc/pki/
 
       - name: Bootstrapping fedora 38
-        run: sudo python3 bootstrap_fedora.py --version=37
+        run: sudo bash bootstrap_fedora.sh --version=37
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
