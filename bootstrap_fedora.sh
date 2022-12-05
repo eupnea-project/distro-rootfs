@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ -z "$1" ]; then
   echo "No version provided"
   echo "Usage: bootstrap_fedora.sh <version>"
