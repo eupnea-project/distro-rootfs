@@ -14,5 +14,5 @@ echo "Bootstrapping fedora"
 dnf -y --releasever="$1" --installroot=/tmp/"$1" groupinstall core
 
 echo "Compressing rootfs"
-chdir "/tmp/$1"
+cd "/tmp/$1"
 tar -cv -I 'xz -9 -T0' -f ../fedora-rootfs-"$1".tar.xz ./
