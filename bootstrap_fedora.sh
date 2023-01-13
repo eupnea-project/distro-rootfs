@@ -9,6 +9,9 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+echo "Updating dnf"
+dnf update -y --releasever="$1" --refresh
+
 echo "Making directories"
 mkdir -p "/tmp/$1"
 
