@@ -9,16 +9,11 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-echo "Updating dnf"
-dnf clean all
-dnf upgrade -y --releasever="$1" --refresh
-dnf clean all
-
 echo "Making directories"
 mkdir -p "/tmp/$1"
 
 echo "Bootstrapping fedora"
-dnf -y --releasever="$1" --installroot=/tmp/"$1" groupinstall core
+dnf -y --releasever="$1" --refresh --installroot=/tmp/"$1" groupinstall core
 
 echo "Compressing rootfs"
 cd "/tmp/$1"
