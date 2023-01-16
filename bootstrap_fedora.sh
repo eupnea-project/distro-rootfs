@@ -10,7 +10,9 @@ if [ -z "$1" ]; then
 fi
 
 echo "Updating dnf"
-dnf update -y --releasever="$1" --refresh
+dnf clean all
+dnf upgrade -y --releasever="$1" --refresh
+dnf clean all
 
 echo "Making directories"
 mkdir -p "/tmp/$1"
