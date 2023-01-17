@@ -22,7 +22,12 @@ jobs:
         run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
 
       - name: Adding gpg keys repos for dnf
-        run: sudo cp -r configs/rpm-gpg /etc/pki/
+        run: |
+          sudo cp -r configs/rpm-gpg /etc/pki/
+          # fix perms
+          sudo chmod 755 /etc/pki/rpm-gpg/*
+          echo "File"
+          file /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-37-x86_64
 
       - name: Bootstrapping fedora 37
         run: sudo bash bootstrap_fedora.sh 37
