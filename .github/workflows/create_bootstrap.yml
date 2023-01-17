@@ -21,12 +21,10 @@ jobs:
       - name: Adding yum repos for dnf
         run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
 
-      - name: Adding gpg keys repos for dnf
+      - name: Adding gpg keys for dnf
         run: |
           sudo mkdir -p /etc/pki/rpm-gpg
           sudo cp -r configs/rpm-gpg/* /etc/pki/rpm-gpg/
-          echo "File"
-          file /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-37-x86_64
 
       - name: Bootstrapping fedora 37
         run: sudo bash bootstrap_fedora.sh 37
@@ -53,8 +51,10 @@ jobs:
       - name: Adding yum repos for dnf
         run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
 
-      - name: Adding gpg keys repos for dnf
-        run: sudo cp -r configs/rpm-gpg /etc/pki/
+      - name: Adding gpg keys for dnf
+        run: |
+          sudo mkdir -p /etc/pki/rpm-gpg
+          sudo cp -r configs/rpm-gpg/* /etc/pki/rpm-gpg/
 
       - name: Bootstrapping fedora 38
         run: sudo bash bootstrap_fedora.sh 38
