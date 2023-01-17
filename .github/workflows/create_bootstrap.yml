@@ -23,9 +23,8 @@ jobs:
 
       - name: Adding gpg keys repos for dnf
         run: |
-          sudo cp -r configs/rpm-gpg /etc/pki/
-          # fix perms
-          sudo chmod 755 /etc/pki/rpm-gpg/*
+          mkdir -p /etc/pki/rpm-gpg
+          sudo cp -r configs/rpm-gpg/* /etc/pki/rpm-gpg/*
           echo "File"
           file /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-37-x86_64
 
