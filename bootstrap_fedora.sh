@@ -18,3 +18,6 @@ dnf -y --releasever="$1" --installroot=/tmp/"$1" groupinstall core
 echo "Compressing rootfs"
 cd "/tmp/$1"
 tar -cv -I 'xz -9 -T0' -f ../fedora-rootfs-"$1".tar.xz ./
+
+echo "Calculating sha256sum"
+sha256sum ../fedora-rootfs-"$1".tar.xz > ../fedora-rootfs-"$1".sha256sum
