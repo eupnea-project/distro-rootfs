@@ -36,6 +36,7 @@ jobs:
           retention-days: 1
           path: |
             /tmp/fedora-rootfs-37.tar.xz
+            /tmp/fedora-rootfs-37.sha256
 
   build-38:
     runs-on: ubuntu-latest
@@ -66,6 +67,7 @@ jobs:
           retention-days: 1
           path: |
             /tmp/fedora-rootfs-38.tar.xz
+            /tmp/fedora-rootfs-38.sha256
 
   create-release:
     runs-on: ubuntu-latest
