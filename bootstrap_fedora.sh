@@ -12,7 +12,7 @@ fi
 echo "Making directories"
 mkdir -p "/tmp/$1"
 
-echo "Bootstrapping fedora"
+echo "Bootstrapping Fedora $1"
 dnf -y --releasever="$1" --installroot=/tmp/"$1" groupinstall core
 
 echo "Compressing rootfs"
