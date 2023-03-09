@@ -16,7 +16,7 @@ echo "Bootstrapping Fedora $1"
 dnf -y --releasever="$1" --installroot=/tmp/"$1" groupinstall core
 
 echo "Updating all packages inside rootfs"
-chroot dnf install -y --releasever="$1" fedora-release # Install the correct release package
+chroot /tmp/"$1" /bin/bash -c "dnf install -y --releasever=$1 fedora-release" # Install the correct release package
 chroot /tmp/"$1" /bin/bash -c "dnf update -y"
 
 echo "Cleaning rootfs"
