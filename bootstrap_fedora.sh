@@ -27,7 +27,7 @@ rm -rf /tmp/"$1"/mnt/*
 #rm -rf /tmp/"$1"/sys/*
 rm -rf /tmp/"$1"/tmp/*
 rm -rf /tmp/"$1"/var/tmp
-rm -rf /tmp/"$1"/var/cache
+#rm -rf /tmp/"$1"/var/cache
 
 echo "Compressing rootfs"
 cd "/tmp/$1"
