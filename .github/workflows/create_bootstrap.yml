@@ -29,13 +29,13 @@ jobs:
           sudo mkdir -p /etc/pki/rpm-gpg
           sudo cp -r configs/rpm-gpg/* /etc/pki/rpm-gpg/
 
-      - name: Bootstrapping fedora 37
+      - name: Bootstrapping fedora ${{ matrix.version }}
         run: sudo bash bootstrap_fedora.sh ${{ matrix.version }}
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: fedora-37
+          name: fedora-${{ matrix.version }}
           retention-days: 1
           path: |
             /tmp/fedora-rootfs-${{ matrix.version }}.tar.xz
