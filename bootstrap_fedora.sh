@@ -5,7 +5,6 @@ set -e
 if [ -z "$1" ]; then
   echo "No version provided"
   echo "Usage: bootstrap_fedora.sh <version>"
-  echo "Supported versions: 37, 38"
   exit 1
 fi
 
