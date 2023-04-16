@@ -5,6 +5,7 @@ set -e
 if [ -z "$1" ]; then
   echo "No version provided"
   echo "Usage: bootstrap_fedora.sh <version>"
+  echo "For example: bootstrap_fedora.sh 37"
   exit 1
 fi
 
@@ -33,4 +34,4 @@ cd "/tmp/$1"
 tar -cv -I 'xz -9 -T0' -f ../fedora-rootfs-"$1".tar.xz ./
 
 echo "Calculating sha256sum"
-sha256sum ../fedora-rootfs-"$1".tar.xz > ../fedora-rootfs-"$1".sha256sum
+sha256sum ../fedora-rootfs-"$1".tar.xz >../fedora-rootfs-"$1".sha256sum
