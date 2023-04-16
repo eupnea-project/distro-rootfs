@@ -7,7 +7,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-37:
+  bootstrap-rootfs:
+    strategy:
+      matrix:
+        version: [ "37", "38" ]
     runs-on: ubuntu-latest
     steps:
       - name: Checking out repository code
@@ -27,7 +30,7 @@ jobs:
           sudo cp -r configs/rpm-gpg/* /etc/pki/rpm-gpg/
 
       - name: Bootstrapping fedora 37
-        run: sudo bash bootstrap_fedora.sh 37
+        run: sudo bash bootstrap_fedora.sh ${{ matrix.version }}
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
@@ -35,43 +38,12 @@ jobs:
           name: fedora-37
           retention-days: 1
           path: |
-            /tmp/fedora-rootfs-37.tar.xz
-            /tmp/fedora-rootfs-37.sha256
-
-  build-38:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checking out repository code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-
-      - name: Installing dependencies
-        run: sudo apt-get update && sudo apt-get install -y dnf curl
-
-      - name: Adding yum repos for dnf
-        run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
-
-      - name: Adding gpg keys for dnf
-        run: |
-          sudo mkdir -p /etc/pki/rpm-gpg
-          sudo cp -r configs/rpm-gpg/* /etc/pki/rpm-gpg/
-
-      - name: Bootstrapping fedora 38
-        run: sudo bash bootstrap_fedora.sh 38
-
-      - name: Uploading rootfs as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: fedora-38
-          retention-days: 1
-          path: |
-            /tmp/fedora-rootfs-38.tar.xz
-            /tmp/fedora-rootfs-38.sha256
+            /tmp/fedora-rootfs-${{ matrix.version }}.tar.xz
+            /tmp/fedora-rootfs-${{ matrix.version }}.sha256
 
   create-release:
     runs-on: ubuntu-latest
-    needs: [ build-37, build-38 ]
+    needs: bootstrap-rootfs
     steps:
       - name: Downloading rootfs artifacts
         uses: actions/download-artifact@v3
