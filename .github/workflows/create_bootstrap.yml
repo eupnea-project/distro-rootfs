@@ -10,7 +10,7 @@ jobs:
   bootstrap-rootfs:
     strategy:
       matrix:
-        version: [ "37", "38" ]
+        version: [ "38", "39" ]
     runs-on: ubuntu-latest
     steps:
       - name: Checking out repository code
