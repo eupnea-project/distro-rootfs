@@ -1,3 +1,4 @@
-# fedora-rootfs
-A pre-bootstrapped, unmodified fedora rootfs.  
-Please download official fedora isos at https://getfedora.org/
+# Fedora RootFS
+A pre-bootstrapped, unmodified Fedora rootfs.
+
+Please download official fedora ISOs at https://getfedora.org/
