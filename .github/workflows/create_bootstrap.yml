@@ -62,7 +62,7 @@ jobs:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           name: Automated Fedora RootFS build - ${{ steps.tag.outputs.release_tag }}
           body: |
-            These are completely **unmodified** fedora rootfs images for the Depthboot builder script.  
+            These are completely **unmodified** Fedora RootFS images for the Depthboot builder script.  
             Please download official images at https://getfedora.org/
           files: |
             /tmp/artifacts/fedora-*/fedora-rootfs-*
