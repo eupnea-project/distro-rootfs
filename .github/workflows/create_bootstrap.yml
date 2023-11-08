@@ -34,7 +34,7 @@ jobs:
           curl -LO https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/$package_name
 
           # extract package content into root
-          sudo rpm2cpio fedora-gpg-keys-*.noarch.rpm | cpio -idmv -D /
+          rpm2cpio fedora-gpg-keys-*.noarch.rpm | sudo cpio -idmv -D /
 
       - name: Bootstrapping Fedora ${{ matrix.version }}
         run: sudo bash bootstrap_fedora.sh ${{ matrix.version }}
