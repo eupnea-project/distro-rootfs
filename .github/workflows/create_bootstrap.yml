@@ -24,10 +24,17 @@ jobs:
       - name: Adding yum repos for dnf
         run: sudo cp -r configs/yum.repos.d/ /etc/yum.repos.d/
 
-      - name: Adding GPG keys for dnf
+      - name: Downloading GPG keys for dnf
         run: |
-          sudo mkdir -p /etc/pki/rpm-gpg
-          sudo cp -r configs/rpm-gpg/* /etc/pki/rpm-gpg/
+          # dnf needs gpg keys to work -> get them from the latest rawhide gpg keys package
+          # numbers in the rawhide package name can change -> dynamically determine the name
+          package_name=$(curl -L https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/ | grep fedora-gpg-keys- | awk -F'>' '{print $3}' | awk -F'<' '{print $1}')
+
+          # download package
+          curl -LO https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/Packages/f/$package_name
+
+          # extract package content into root
+          rpm2cpio fedora-gpg-keys-*.noarch.rpm | cpio -idmv -D /
 
       - name: Bootstrapping Fedora ${{ matrix.version }}
         run: sudo bash bootstrap_fedora.sh ${{ matrix.version }}
