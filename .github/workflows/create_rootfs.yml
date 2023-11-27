@@ -55,7 +55,7 @@ jobs:
         codename: ["jammy", "mantic"]
         exclude:
           - version: 22.04
-            codename: lunar
+            codename: mantic
           - version: 23.10
             codename: jammy
     runs-on: ubuntu-latest
