@@ -118,7 +118,7 @@ jobs:
         run: sudo apt-get install -y curl squashfs-tools
 
       - name: Repacking ${{ matrix.distro }} rootfs
-        run: sudo bash repack_rootfs.sh ${{ matrix.distro }}
+        run: sudo bash repack_pop-os.sh ${{ matrix.distro }}
 
       - name: Splitting tar archive
         run: sudo split --verbose -b 1900MB /tmp/distro/${{ matrix.distro }}-rootfs-22.04.tar.xz /tmp/distro/${{ matrix.distro }}-rootfs-22.04.split.
