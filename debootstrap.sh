@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
   echo "No distro provided"
   echo "Usage: debootstrap.sh [debian | ubuntu] <version> <codename>"
   echo "For example: debootstrap.sh ubuntu 22.04 jammy"
-  echo "For example: debootstrap.sh debian 12 bookworm"
+  echo "For example: debootstrap.sh debian stable bookworm"
   exit 1
 fi
 
@@ -14,7 +14,7 @@ if [ -z "$2" ]; then
   echo "No version provided"
   echo "Usage: debootstrap.sh [debian | ubuntu] <codename>"
   echo "For example: debootstrap.sh ubuntu 22.04 jammy"
-  echo "For example: debootstrap.sh debian 12 bookworm"
+  echo "For example: debootstrap.sh debian stable bookworm"
   exit 1
 fi
 
@@ -22,7 +22,7 @@ if [ -z "$3" ]; then
   echo "No codename provided"
   echo "Usage: debootstrap.sh [debian | ubuntu] <version> <codename>"
   echo "For example: debootstrap.sh ubuntu 22.04 jammy"
-  echo "For example: debootstrap.sh debian 12 bookworm"
+  echo "For example: debootstrap.sh debian stable bookworm"
   exit 1
 fi
 
