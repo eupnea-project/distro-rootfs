@@ -91,17 +91,17 @@ jobs:
       - name: Installing dependencies
         run: sudo apt-get update && sudo apt-get install -y debootstrap
 
-      - name: Bootstrapping debian 12
+      - name: Bootstrapping debian stable
         run: sudo bash debootstrap.sh debian stable bookworm
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: debian-12
+          name: debian-stable
           retention-days: 1
           path: |
-            /tmp/debian-rootfs-12.tar.xz
-            /tmp/debian-rootfs-12.sha256
+            /tmp/debian-rootfs-stable.tar.xz
+            /tmp/debian-rootfs-stable.sha256
 
   repack-pop-os:
     strategy:
