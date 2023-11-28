@@ -33,7 +33,7 @@ echo "Bootstrapping $1 $2 $3"
 if [ "$1" == "ubuntu" ]; then
   debootstrap --components=main,restricted,universe,multiverse "$3" /tmp/"$2" http://archive.ubuntu.com/ubuntu
 elif [ "$1" == "debian" ]; then
-  debootstrap "$3" /tmp/"$2" http://deb.debian.org/debian/
+  debootstrap --components=main,non-free,non-free-firmware "$3" /tmp/"$2" http://deb.debian.org/debian/
 else
   echo "Unsupported distro"
   echo "Only ubuntu or debian is allowed"
