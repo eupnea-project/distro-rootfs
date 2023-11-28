@@ -21,4 +21,4 @@ Please download official ubuntu ISOs at https://ubuntu.com/download/
 
 ### Debian
 A pre-bootstrapped, unmodified Debian rootfs.  
-Please download official ubuntu ISOs at https://www.debian.org/download
+Please download official debian ISOs at https://www.debian.org/download
