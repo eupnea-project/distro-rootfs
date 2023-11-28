@@ -40,7 +40,7 @@ jobs:
         run: sudo bash bootstrap_fedora.sh ${{ matrix.version }}
 
       - name: Uploading RootFS as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: fedora-${{ matrix.version }}
           retention-days: 1
@@ -72,7 +72,7 @@ jobs:
         run: sudo bash debootstrap.sh ubuntu ${{ matrix.version }} ${{ matrix.codename }}
 
       - name: Uploading rootfs as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ubuntu-${{ matrix.version }}
           retention-days: 1
@@ -95,7 +95,7 @@ jobs:
         run: sudo bash debootstrap.sh debian stable bookworm
 
       - name: Uploading rootfs as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: debian-stable
           retention-days: 1
@@ -124,7 +124,7 @@ jobs:
         run: sudo split --verbose -b 1900MB /tmp/distro/${{ matrix.distro }}-rootfs-22.04.tar.xz /tmp/distro/${{ matrix.distro }}-rootfs-22.04.split.
 
       - name: Uploading ${{ matrix.distro }} rootfs as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.distro }}
           retention-days: 1
