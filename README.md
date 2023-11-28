@@ -15,6 +15,10 @@ Please download official fedora ISOs at https://getfedora.org/
 A pre-unsquashed, umodified rootfs made from unsquashed popos liveos ISOs.  
 Please download official Pop!_OS isos at https://pop.system76.com/
 
-# Ubuntu
+### Ubuntu
 A pre-bootstrapped, unmodified Ubuntu rootfs.  
 Please download official ubuntu ISOs at https://ubuntu.com/download/
+
+### Debian
+A pre-bootstrapped, unmodified Debian rootfs.  
+Please download official ubuntu ISOs at https://www.debian.org/download
